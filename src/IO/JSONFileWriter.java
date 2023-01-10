@@ -18,22 +18,6 @@ public class JSONFileWriter {
 	}
 
 
-	/**
-	 * Method creates json file and writes given String parameter into that json file.
-	 * @param String
-	 */
-	private void writeJSONFile(String input) {
-		obj.put("",input);
-		try {
-			FileWriter fileWriter = new FileWriter("src\\src.IO\\src.Notes.json");
-			fileWriter.write(obj.toString());
-			fileWriter.flush();
-			fileWriter.close();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Method creates json file and writes given JSONArray parameter into that json file.
@@ -42,7 +26,7 @@ public class JSONFileWriter {
 	private void writeJSONFile(JSONArray input) {
 		obj.put("",input);
 		try {
-			FileWriter fileWriter = new FileWriter("src\\src.IO\\src.Notes.json");
+			FileWriter fileWriter = new FileWriter("Notes.json");
 			fileWriter.write(obj.toString());
 			fileWriter.flush();
 			fileWriter.close();
@@ -72,6 +56,8 @@ public class JSONFileWriter {
 
 		return noteObject;
 	}
+
+
 	/**
 	 * Method that creates JSONArray from given NoteGroup branch and returns it.
 	 * @param noteGroup
@@ -79,7 +65,7 @@ public class JSONFileWriter {
 	 */
 	private JSONArray createNotesAsJson(NoteGroup noteGroup) {
 		JSONArray noteGroupObject = new JSONArray();
-		noteGroupObject.put(createNoteObject(noteGroup));	//id == 0 ise koyma !!!
+		noteGroupObject.put(createNoteObject(noteGroup));
 		for(INote note: noteGroup.getSubNotes()) {
 			if(note.isNote()) {
 				JSONObject tempNote = createNoteObject(note);
